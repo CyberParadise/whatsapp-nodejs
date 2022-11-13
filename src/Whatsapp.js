@@ -37,7 +37,7 @@ class Whatsapp {
   async init(opts) {
     await initBeforeStart();
 
-    const { mobile, cc, mnc, mcc, proxy } = opts;
+    const { mobile, cc, mnc, mcc, proxy, pushName } = opts;
     this.opts = opts;
 
     this.mobile = mobile;
@@ -46,6 +46,7 @@ class Whatsapp {
     this.mnc = mnc;
     this.mcc = mcc;
     this.proxy = proxy;
+    this.pushName = pushName;
 
     this.signal = new Signal(this.mobile);
     await this.signal.init();
