@@ -5,7 +5,7 @@ const { generateUA } = require('../lib/ua');
 
 module.exports = {
   async initAccount(opts) {
-    const { mobile, cc, mnc, mcc } = opts;
+    const { mobile, cc, mnc, mcc, pushName } = opts;
     let account = await db.account.findOne({ mobile });
     if (account) return account;
 
@@ -20,7 +20,7 @@ module.exports = {
       mobile,
       ...ccConfig,
 
-      pushName: utils.generatePushName(),
+      pushName: pushName || utils.generatePushName(),
       platform: 0,
       clientStaticKeypair: Buffer.concat([keyPair.private, keyPair.public]).toString('base64'),
       serverStaticPublic: '',
